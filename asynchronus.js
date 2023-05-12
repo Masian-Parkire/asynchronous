@@ -1,9 +1,21 @@
 //Write an asynchronous function that accepts a message string and a delay time in milliseconds.
 // The function should log the message to the console after the specified delay time.
-const delayLogMessage = ()=>{
-    console.log("I will come after 20 minutes ");
-}
-setInterval(delayLogMessage,4000)
+// const delayLogMessage = ()=>{
+//     console.log("I will come after 20 minutes ");
+// }
+// setInterval(delayLogMessage,4000)
+
+const delayLogMessage = () => {
+    console.log("I will come after 20 minutes");
+  };
+  
+  const intervalID = setInterval(delayLogMessage, 4000);
+  
+  
+  if (intervalID) {
+    clearInterval(intervalID);
+  }
+delayLogMessage()
 
 //You have an array of user IDs and a function getUserData(id) 
 //that returns a Promise with user data when given a user ID. 
@@ -30,19 +42,29 @@ fetchData()
 // is successful and rejects if there's an error. Write a function 
 //that calls performTask() and logs a custom success message if the task
 // is successful, and a custom error message if there's an error.
-const performTask=async ()=>{
-  return new Promise((resolve,reject)=>{
-    let success =true;
-    if (success) {
-        resolve('task is successful')
-    }
-    else{
-        reject('task not completed')
-    }
-  }).then(()=>{console.log("I will work hard");})
-  .catch(()=>{console.log("I will upskill");})
-  .finally(()=>{console.log("I am worthy");})
+
+
+function performTask() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const success = false; 
   
-}
-console.log({success});
+        if (success) {
+          resolve("Task complete");
+        } else {
+          reject("Task not completed to satisfaction");
+        }
+      }, 4000); 
+    });
+  }
+  function handleTaskResult() {
+    performTask()
+      .then((result) => {
+        console.log("Success:", result); 
+      })
+      .catch((error) => {
+        console.log("Error:", error); 
+      });
+  }
+    handleTaskResult();
 
